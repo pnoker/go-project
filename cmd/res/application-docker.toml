@@ -1,0 +1,7 @@
+[Databases]
+  Username = ''
+  Password = ''
+  Host = 'MONGO_HOST'
+  Port = 27017
+  Database = 'go-project'
+  Timeout = 5000

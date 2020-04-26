@@ -1,0 +1,42 @@
+#
+#  Copyright 2019 Pnoker. All Rights Reserved.
+#
+
+version: '3.3'
+
+services:
+
+  project:
+    build:
+      context: ../../
+      dockerfile: ./Dockerfile
+    image: pnoker/go-project:v1
+    restart: always
+    container_name: go-project
+    hostname: go-project
+    environment:
+      - MONGO_HOST=go-mongo
+    networks:
+      gonet:
+        aliases:
+          - go-project
+
+  mongo:
+    build:
+      context: ./dependences/mongo/
+      dockerfile: ./Dockerfile
+    image: pnoker/go-mongo:v1
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: go-mongo
+    hostname: go-mongo
+    networks:
+      gonet:
+        aliases:
+          - go-mongo
+
+networks:
+  gonet:
+    driver: 'bridge'
+...
